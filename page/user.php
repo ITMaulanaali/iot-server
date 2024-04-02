@@ -8,7 +8,7 @@ if($_SESSION['hakakses'] != "admin"){
 error_reporting(E_ERROR | E_PARSE);
 if(isset($_GET['del'])){
   $username = $_GET['del'];
-  $sqldel = "UPDATE user SET aktif = 'Tidak' WHERE username = '$username'";
+  $sqldel = "UPDATE users SET hakakses = 'user' WHERE username = '$username'";
   mysqli_query($connection, $sqldel);
 }
 
@@ -19,7 +19,7 @@ if(isset($_POST['simpan'])){
   $passHash = password_hash($password, PASSWORD_DEFAULT);
   $hakAkses = $_POST['hakakses'];
 
-  $sqlInsert = "INSERT INTO user (username, password, namalengkap, hakakses) VALUES ('$userName', '$passHash', '$namaLengkap', '$hakAkses')";
+  $sqlInsert = "INSERT INTO users (username, password, namalengkap, hakakses) VALUES ('$userName', '$passHash', '$namaLengkap', '$hakAkses')";
   mysqli_query($connection, $sqlInsert);
 
 }
@@ -27,7 +27,7 @@ if(isset($_POST['simpan'])){
 if(isset($_GET['edit'])){
   $username = $_GET['edit'];
 
-  $sqlShow = "SELECT * FROM user WHERE username = '$username'";
+  $sqlShow = "SELECT * FROM users WHERE username = '$username'";
   $resultEdit = mysqli_query($connection, $sqlShow);
   $rowEdit = mysqli_fetch_assoc($resultEdit);
 
@@ -36,13 +36,12 @@ if(isset($_GET['edit'])){
     $namaLengkap = $_POST['namalengkap'];
     $password = $_POST['password'];
 
-    $sqlEdit = "UPDATE user SET username = '$username', namalengkap = '$namaLengkap', password = '$password' WHERE username = '$username'";
-    var_dump($sqlEdit);
+    $sqlEdit = "UPDATE users SET username = '$username', namalengkap = '$namaLengkap', password = '$password' WHERE username = '$username'";
     mysqli_query($connection, $sqlEdit);
   }
 }
 
-  $sql = "SELECT * FROM user WHERE aktif = 'Ya'";
+  $sql = "SELECT * FROM users WHERE hakakses = 'admin'";
 	$tampilan = mysqli_query($connection, $sql);
 ?>
 

@@ -1,6 +1,6 @@
 <?php
 
-$connection = koneksiToMysql("localhost", "root", "", "sistemiot");
+$connection = koneksiToMysql("localhost", "root", "@Lanlana1", "sistemiot");
 
 function koneksiToMysql($lokasiserver, $username, $password, $namadatabase){
 	$conn = mysqli_connect($lokasiserver, $username, $password, $namadatabase);

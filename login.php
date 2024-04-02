@@ -11,7 +11,7 @@ if(isset($_POST['username'])){
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  $sql_username_check = "SELECT * FROM user WHERE username = '$username'";
+  $sql_username_check = "SELECT * FROM users WHERE username = '$username'";
   $result = mysqli_query($connection, $sql_username_check);
   $rowData = mysqli_fetch_assoc($result);
 

@@ -85,13 +85,13 @@ include "inc/header.php";
   <!--MQTT Config-->
   <?php if($_GET['hal'] == "home") { ?>
    <script>
-    const clientId = "ikannyamaulana321";
-    const host = "wss://public.cloud.shiftr.io:443/";
+    const clientId = "fromwebhosting";
+    const host = "wss://hidroponikan.cloud.shiftr.io:443/";
     const options = {
       keepalive: 60,
       clientId: clientId,
-      username: "public",
-      password: "public",
+      username: "hidroponikan",
+      password: "XU3QHexrKaVsrfLd",
       protocolId: "MQTT",
       protocolVersion: 4,
       clean: false,
@@ -102,7 +102,7 @@ include "inc/header.php";
     console.log("Menghubungkan ke broker");
     const client = mqtt.connect(host, options);
 
-    client.subscribe("nusabot/#", {qos: 1});
+    client.subscribe("#", {qos: 0});
     client.on("message", function(topic, payload){
       console.log(topic);
       console.log(payload.toString());
@@ -124,7 +124,7 @@ include "inc/header.php";
 
     function publish(){
       let check = document.getElementById("lampu").checked;
-      client.publish("nusabot/lampu", check.toString(), {qos: 1, retain: true});
+      client.publish("nusabot/lampu", check.toString(), {qos: 0, retain: true});
     }
    </script>
   <?php } ?>

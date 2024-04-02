@@ -4,5 +4,5 @@
         Sistem IoT Paling Lengkap
     </div>
     <!-- Default to the left -->
-    <strong>Hak Cipta &copy; 2024 <a href="#">Bapak Budi</a>.</strong> PT. Dapur Kebul Sentosa.
+    <strong>Hak Cipta &copy; 2024 <a href="#">Sistem IoT</a>.</strong> By. Maulana, klik Kontak
 </footer>

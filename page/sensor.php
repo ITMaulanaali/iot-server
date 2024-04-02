@@ -1,5 +1,5 @@
 <?php
-  $sql = "select * from sensor";
+  $sql = "select * from sensors";
 	$tampilan = mysqli_query($connection, $sql);
 ?>
 
