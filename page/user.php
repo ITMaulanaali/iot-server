@@ -8,7 +8,7 @@ if($_SESSION['hakakses'] != "admin"){
 error_reporting(E_ERROR | E_PARSE);
 if(isset($_GET['del'])){
   $username = $_GET['del'];
-  $sqldel = "UPDATE users SET hakakses = 'user' WHERE username = '$username'";
+  $sqldel = "UPDATE users SET aktif = 'Tidak' WHERE username = '$username'";
   mysqli_query($connection, $sqldel);
 }
 
@@ -41,7 +41,7 @@ if(isset($_GET['edit'])){
   }
 }
 
-  $sql = "SELECT * FROM users WHERE hakakses = 'admin'";
+  $sql = "SELECT * FROM users WHERE hakakses = 'user'";
 	$tampilan = mysqli_query($connection, $sql);
 ?>
 
@@ -126,7 +126,7 @@ if(isset($_GET['edit'])){
                   <div class="form-group">
                     <label>Hak Akses</label>
                     <select class="custom-select" name="hakakses">
-                      <option value="admin">Admin Ni Bos</option>
+                      <option value="admin">Admin</option>
                       <option value="user">User</option>
                   </select>
                   </div>
