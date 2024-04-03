@@ -85,7 +85,7 @@ include "inc/header.php";
   <!--MQTT Config-->
   <?php if($_GET['hal'] == "home") { ?>
    <script>
-    const clientId = "fromwebhosting";
+    const clientId = "fromwebiot";
     const host = "wss://hidroponikan.cloud.shiftr.io:443/";
     const options = {
       keepalive: 60,
@@ -102,7 +102,7 @@ include "inc/header.php";
     console.log("Menghubungkan ke broker");
     const client = mqtt.connect(host, options);
 
-    client.subscribe("#", {qos: 0});
+    client.subscribe("nusabot/#", {qos: 0});
     client.on("message", function(topic, payload){
       console.log(topic);
       console.log(payload.toString());
@@ -124,7 +124,7 @@ include "inc/header.php";
 
     function publish(){
       let check = document.getElementById("lampu").checked;
-      client.publish("nusabot/lampu", check.toString(), {qos: 0, retain: true});
+      client.publish("nusabot/lampu", check.toString(), {qos: 1, retain: true});
     }
    </script>
   <?php } ?>
