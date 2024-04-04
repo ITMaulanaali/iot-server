@@ -102,16 +102,16 @@ include "inc/header.php";
     console.log("Menghubungkan ke broker");
     const client = mqtt.connect(host, options);
 
-    client.subscribe("nusabot/#", {qos: 0});
+    client.subscribe("mqttx/#", {qos: 0});
     client.on("message", function(topic, payload){
       console.log(topic);
       console.log(payload.toString());
 
-      if(topic == "nusabot/suhu"){
+      if(topic == "mqttx/suhu"){
         document.getElementById("suhu").innerHTML = payload;
       }
       
-      if(topic == "nusabot/kelembaban"){
+      if(topic == "mqttx/kelembaban"){
         document.getElementById("kelembaban").innerHTML = payload;
       }
     });
@@ -124,7 +124,7 @@ include "inc/header.php";
 
     function publish(){
       let check = document.getElementById("lampu").checked;
-      client.publish("nusabot/lampu", check.toString(), {qos: 1, retain: true});
+      client.publish("mqttx/lampu", check.toString(), {qos: 1, retain: true});
     }
    </script>
   <?php } ?>
