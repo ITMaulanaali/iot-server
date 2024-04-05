@@ -123,7 +123,7 @@ include "inc/header.php";
     });
 
     function publish(){
-      let check = document.getElementById("ikan").checked;
+      let check = document.getElementById("tukang").checked;
       client.publish("mqttx/rumah/esp32/lampu", check.toString(), {qos: 1, retain: true});
     }
    </script>
