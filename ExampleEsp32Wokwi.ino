@@ -18,6 +18,10 @@ MQTTClient client;
 
 unsigned long lastMillis = 0;
 
+#define suhu 32
+#define kelembaban 35
+short lampu = 19;
+
 void connect() {
   Serial.print("checking wifi...");
   while (WiFi.status() != WL_CONNECTED) {
@@ -26,21 +30,23 @@ void connect() {
   }
 
   Serial.print("\nconnecting...");
-  while (!client.connect("arduino", "hidroponikan", "XU3QHexrKaVsrfLd")) {
+  while (!client.connect("esp32", "hidroponikan", "XU3QHexrKaVsrfLd")) {
     Serial.print(".");
     delay(1000);
   }
 
   Serial.println("\nconnected!");
 
-  client.subscribe("mqttx/lampu");
+  client.subscribe("mqttx/rumah/esp32/lampu");
   // client.unsubscribe("/hello");
 }
 
 void messageReceived(String &topic, String &payload) {
   if(payload == "true"){
+    digitalWrite(lampu, HIGH);
     Serial.println("nyalalampu");
   }else{
+    digitalWrite(lampu, LOW);
     Serial.println("matilampu");
   }
 
@@ -53,6 +59,9 @@ void messageReceived(String &topic, String &payload) {
 void setup() {
   Serial.begin(115200);
   WiFi.begin(ssid, pass);
+  pinMode(lampu, OUTPUT);
+  pinMode(suhu, INPUT);
+  pinMode(kelembaban, INPUT);
 
   // Note: Local domain names (e.g. "Computer.local" on OSX) are not supported
   // by Arduino. You need to set the IP address directly.
@@ -70,9 +79,13 @@ void loop() {
     connect();
   }
 
+  short sensorSuhu = analogRead(suhu);
+  short sensorKelembaban = analogRead(kelembaban);
+
   // publish a message roughly every second.
   if (millis() - lastMillis > 1000) {
     lastMillis = millis();
-    client.publish("mqttx/esp32", "esp32 wokwi mempublish");
+    client.publish("mqttx/suhu", String(sensorSuhu));
+    client.publish("mqttx/kelembaban", String(sensorKelembaban));
   }
 }

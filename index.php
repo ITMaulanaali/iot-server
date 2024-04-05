@@ -124,7 +124,7 @@ include "inc/header.php";
 
     function publish(){
       let check = document.getElementById("lampu").checked;
-      client.publish("mqttx/lampu", check.toString(), {qos: 1, retain: true});
+      client.publish("mqttx/rumah/esp32/lampu", check.toString(), {qos: 1, retain: true});
     }
    </script>
   <?php } ?>

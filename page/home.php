@@ -30,7 +30,7 @@
                 <div class="col-lg-3">
                     <div class="small-box bg-primary">
                         <div class="inner">
-                            <h3><span id="kelembapan">?</span> %</h3>
+                            <h3><span id="kelembaban">?</span> %</h3>
 
                             <p>Kelembaban</p>
                         </div>
